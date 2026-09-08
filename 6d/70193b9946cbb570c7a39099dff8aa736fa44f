@@ -1,0 +1,22 @@
+package.json
+  s_448e6d85f1c5f9::t_f56471538d8cf6 15
+  s_448e6d85f1c5f9::t_c6a8d5f2cc9c48 36-37
+package-lock.json
+  s_448e6d85f1c5f9::t_ad19efafdc5439 12,643-645,649-651,665-667,681-683,700-702,719-721,738-740,757-759,773-775,827-829,2507-2509,2512-2513,2516,2526-2534
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.2",
+  "base_commit_sha": "6d70193b9946cbb570c7a39099dff8aa736fa44f",
+  "prompts": {},
+  "sessions": {
+    "s_448e6d85f1c5f9": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "eb313294-4d5b-4b09-a860-bc8ea77cb440",
+        "model": "claude-sonnet-5"
+      },
+      "human_author": "GeeksikhSecurity <gurvinder@sayvainc.com>"
+    }
+  }
+}
