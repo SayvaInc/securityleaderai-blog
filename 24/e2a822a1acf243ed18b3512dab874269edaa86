@@ -1,0 +1,24 @@
+CLAUDE.md
+  s_250ccfafd1b190::t_3decae019c2b45 343,345,347-350,352
+  s_250ccfafd1b190::t_ed0318771a7d8e 505-514
+package-lock.json
+  s_250ccfafd1b190::t_d32ba4211c0ee5 12,643-645,649-651,665-667,681-683,700-702,719-721,738-740,757-759,773-775,827-829,1012-1014,1050-1052,1070-1074,1094-1096,1314-1316,1612-1614,2507-2509,2512-2513,2516,2526-2534,2560-2562,2564-2567,2646-2648,2665,2787-2789,3234-3236,3473-3475
+package.json
+  s_250ccfafd1b190::t_9009f9d58c082d 15
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "24e2a822a1acf243ed18b3512dab874269edaa86",
+  "prompts": {},
+  "sessions": {
+    "s_250ccfafd1b190": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "39f28a6d-2dc6-4ebb-8e80-d7b1b33f19cd",
+        "model": "claude-sonnet-5"
+      },
+      "human_author": "GeeksikhSecurity <gurvinder@sayvainc.com>"
+    }
+  }
+}
