@@ -1,0 +1,33 @@
+scripts/procedure-guide.ts
+  s_30338ebb124a14::t_9a0ac18d4c00ff 1-62
+.gitignore
+  s_30338ebb124a14::t_5e4eed8ce16a23 45-46
+  s_a0361ac2e996d4::t_d75f2ac3828484 38-41
+  s_30338ebb124a14::t_7e34660f768296 42-44
+.claude/skills/procedure-guide/SKILL.md
+  s_30338ebb124a14::t_f579f80425a21f 1-70
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "e266a1b9903e6c01fe01ddfbfff9819432475c77",
+  "prompts": {},
+  "sessions": {
+    "s_30338ebb124a14": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "eb1f9f87-bd2a-41e9-827f-1b1f4eebe97a",
+        "model": "claude-sonnet-5"
+      },
+      "human_author": "GeeksikhSecurity <gurvinder@sayvainc.com>"
+    },
+    "s_a0361ac2e996d4": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "bd227f2b-ff88-4d98-b7b9-b1a2cbf69d53",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "GeeksikhSecurity <gurvinder@sayvainc.com>"
+    }
+  }
+}
