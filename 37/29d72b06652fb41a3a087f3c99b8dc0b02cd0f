@@ -1,0 +1,31 @@
+src/app/mindmap-demo/page.tsx
+  s_250ccfafd1b190::t_0c6673b827fd6e 1-63
+src/app/mindmap-demo/post/page.tsx
+  s_250ccfafd1b190::t_0fce3f19ac6096 1-46
+src/components/PreziMindMap.tsx
+  s_250ccfafd1b190::t_f9889ff6f106f3 1-263
+src/lib/markdown-to-mindmap.ts
+  s_250ccfafd1b190::t_6871b598386cf1 1-92
+src/lib/mindmap-layout.ts
+  s_250ccfafd1b190::t_795449a4e034cd 1-109
+src/lib/mindmap-types.ts
+  s_250ccfafd1b190::t_ad231a1e0f4510 1-14
+src/lib/pyramid.ts
+  s_250ccfafd1b190::t_026ba56296ee7d 1-87
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "3729d72b06652fb41a3a087f3c99b8dc0b02cd0f",
+  "prompts": {},
+  "sessions": {
+    "s_250ccfafd1b190": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "39f28a6d-2dc6-4ebb-8e80-d7b1b33f19cd",
+        "model": "claude-sonnet-5"
+      },
+      "human_author": "GeeksikhSecurity <gurvinder@sayvainc.com>"
+    }
+  }
+}
