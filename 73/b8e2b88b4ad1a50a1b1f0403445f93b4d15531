@@ -1,0 +1,19 @@
+src/app/procedures/[id]/page.tsx
+  s_30338ebb124a14::t_5565a0385b6306 20-29,31,35
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "73b8e2b88b4ad1a50a1b1f0403445f93b4d15531",
+  "prompts": {},
+  "sessions": {
+    "s_30338ebb124a14": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "eb1f9f87-bd2a-41e9-827f-1b1f4eebe97a",
+        "model": "claude-sonnet-5"
+      },
+      "human_author": "GeeksikhSecurity <gurvinder@sayvainc.com>"
+    }
+  }
+}
