@@ -35,3 +35,12 @@ next-env.d.ts
 
 #Ignore vscode AI rules
 .github/instructions/codacy.instructions.md
+
+# Local TTS sandbox (PyTorch/MMS — not shipped)
+.venv-tts/
+public/audio/**/samples/
+# Local AI decision logs and daily summaries
+/work/decision-log/
+/outputs/daily-summary-*.md
+# procedure-guide skill call log (see .claude/skills/procedure-guide/SKILL.md)
+/data/gate-logs/
