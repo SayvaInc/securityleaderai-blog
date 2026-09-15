@@ -1,0 +1,21 @@
+scripts/export-notion.ts
+  s_30338ebb124a14::t_3afe72a31d353b 1-88
+data/agent-git-baseline.procedure.json
+  s_30338ebb124a14::t_c38d7187f2eead 1-202
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "9121bdac6b779ead3f46ca20bd01689db4ef99e2",
+  "prompts": {},
+  "sessions": {
+    "s_30338ebb124a14": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "eb1f9f87-bd2a-41e9-827f-1b1f4eebe97a",
+        "model": "claude-sonnet-5"
+      },
+      "human_author": "GeeksikhSecurity <gurvinder@sayvainc.com>"
+    }
+  }
+}
