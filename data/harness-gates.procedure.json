@@ -1,0 +1,79 @@
+{
+  "id": "critics-cut-v2-harness",
+  "title": "Critic's Cut v2 — six-stage fail-closed pipeline",
+  "objective": "Every response an agent emits has passed injection, PII, and tool gates, or nothing is emitted at all",
+  "version": "2026-09-14",
+  "entry": "s1-injection-gate",
+  "nodes": [
+    {
+      "id": "s1-injection-gate",
+      "title": "Prompt injection gate",
+      "kind": "gate",
+      "summary": "Reject-by-default screen on inbound content before the model sees it",
+      "passWhen": "No instruction-shaped content in untrusted input; classifier score below threshold",
+      "notes": ["Instructions embedded in fetched documents count as untrusted, not as user input"]
+    },
+    {
+      "id": "s2-model-reasoning",
+      "title": "Model reasoning",
+      "kind": "processor",
+      "summary": "Solver generates; before_model_callback attaches session provenance (commit hash + run ID)",
+      "passWhen": "Always yields output"
+    },
+    {
+      "id": "s3-pii-redaction",
+      "title": "PII redaction",
+      "kind": "processor",
+      "summary": "after_model_callback strips PII from model output before any tool sees it",
+      "passWhen": "Always yields output, possibly sanitized"
+    },
+    {
+      "id": "s4-tool-validation-gate",
+      "title": "Tool validation gate",
+      "kind": "gate",
+      "summary": "Requested tool + arguments checked against allowlist and schema",
+      "passWhen": "Tool is on the allowlist and arguments validate; no out-of-order call for this session",
+      "notes": ["Calling a tool the plan already marked failed is a gate failure, not a retry"]
+    },
+    {
+      "id": "s5-tool-execution",
+      "title": "Tool execution",
+      "kind": "processor",
+      "summary": "before_tool_callback logs ToolEvent; tool runs; result captured",
+      "passWhen": "Always yields a result or a structured error"
+    },
+    {
+      "id": "s6-response-injection-gate",
+      "title": "Response injection gate",
+      "kind": "gate",
+      "summary": "Tool results screened for injection before returning to the model or the user",
+      "passWhen": "No instruction-shaped content in tool output; ResponseEvent emitted only if all gates passed"
+    },
+    {
+      "id": "halt",
+      "title": "TerminationEvent",
+      "kind": "action",
+      "summary": "Runner halts with halt reason + exit_code; audit_trail() exported",
+      "passWhen": "Audit trail written with harness commit, run ID, gate passage rates, exit reason"
+    }
+  ],
+  "edges": [
+    { "from": "s1-injection-gate", "to": "s2-model-reasoning", "kind": "next" },
+    { "from": "s1-injection-gate", "to": "halt", "kind": "onFail" },
+
+    { "from": "s2-model-reasoning", "to": "s3-pii-redaction", "kind": "next" },
+    { "from": "s2-model-reasoning", "to": "s1-injection-gate", "kind": "requires" },
+
+    { "from": "s3-pii-redaction", "to": "s4-tool-validation-gate", "kind": "next", "condition": "model requested a tool" },
+    { "from": "s3-pii-redaction", "to": "s6-response-injection-gate", "kind": "next", "condition": "no tool requested" },
+
+    { "from": "s4-tool-validation-gate", "to": "s5-tool-execution", "kind": "next" },
+    { "from": "s4-tool-validation-gate", "to": "halt", "kind": "onFail" },
+    { "from": "s4-tool-validation-gate", "to": "s3-pii-redaction", "kind": "requires" },
+
+    { "from": "s5-tool-execution", "to": "s6-response-injection-gate", "kind": "next" },
+
+    { "from": "s6-response-injection-gate", "to": "s2-model-reasoning", "kind": "next", "condition": "tool result needs another reasoning turn" },
+    { "from": "s6-response-injection-gate", "to": "halt", "kind": "onFail" }
+  ]
+}
