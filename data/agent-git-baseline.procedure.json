@@ -1,0 +1,202 @@
+{
+  "id": "agent-git-baseline",
+  "title": "Agent git baseline — three-layer secure git workflow",
+  "objective": "Every agent-authored git action is bound by intent (CLAUDE.md), enforced server-side (branch rulesets, required checks, review), and attributed (signed commits, short-lived scoped tokens) — or it does not merge.",
+  "version": "2779c93c3da3dbab08f5cfbb0919a1c4d72d028c",
+  "entry": "s1-branch-from-main",
+  "nodes": [
+    {
+      "id": "s1-branch-from-main",
+      "title": "Cut feature branch from main",
+      "kind": "action",
+      "summary": "Cut a scoped feature branch from main for one logical change",
+      "passWhen": "Branch forked from latest main; scoped to exactly one logical change; short-lived (~1-2 days), not a long-running branch",
+      "notes": [
+        "Trunk-Based Development or disciplined GitHub Flow only — GitFlow is explicitly out of scope for agent-authored work"
+      ]
+    },
+    {
+      "id": "s2-author-commits",
+      "title": "Author commits",
+      "kind": "processor",
+      "summary": "Author commits toward the one logical change",
+      "passWhen": "Each commit represents real work toward the declared change; no credentials, tokens, or keys in the diff — not even realistic placeholders"
+    },
+    {
+      "id": "s3-sign-commit-gate",
+      "title": "Commit signature check",
+      "kind": "gate",
+      "summary": "Verify every commit is signed (GPG/SSH/Sigstore-Gitsign)",
+      "passWhen": "Every commit is signed; the server rejects unsigned commits outright",
+      "notes": [
+        "Server-side commits made via GitHub's GraphQL mutation are auto-marked 'Verified' — that is manufactured provenance, not a real signature; do not treat it as satisfying this gate"
+      ]
+    },
+    {
+      "id": "s4-identity-token-gate",
+      "title": "Identity / token check",
+      "kind": "gate",
+      "summary": "Verify the credential doing the push or merge is a scoped robot identity, not a human PAT",
+      "passWhen": "Push/merge uses a short-lived (~1hr) fine-grained installation token, scoped to this repo and action — never a long-lived human PAT",
+      "notes": [
+        "SLSA v1.2 Source Track distinguishes 'trusted person' from 'trusted robot' — this gate is what earns the robot label"
+      ]
+    },
+    {
+      "id": "s5-push-to-remote",
+      "title": "Push branch to remote",
+      "kind": "action",
+      "summary": "Push the branch to the remote",
+      "passWhen": "No force-push or history rewrite on a protected branch; secret-scanning push protection found nothing in transit"
+    },
+    {
+      "id": "s6-open-pr",
+      "title": "Open pull request",
+      "kind": "action",
+      "summary": "Open the pull request for the change",
+      "passWhen": "PR is tagged agent-authored; the invoking human is named; the PR does not touch .github/workflows/**, enforcement/**, or CODEOWNERS unless that IS the declared scope of the change"
+    },
+    {
+      "id": "s7-required-checks-gate",
+      "title": "Required status checks",
+      "kind": "gate",
+      "summary": "Required status checks run: SAST, SCA, secret scanning, lint, test matrix",
+      "passWhen": "All required status checks pass"
+    },
+    {
+      "id": "s8-checks-failed-triage",
+      "title": "Check-failure triage",
+      "kind": "decision",
+      "summary": "Decide whether a required-check failure has a diagnosed fix or needs to stop",
+      "passWhen": "A concrete root cause is identified before any further push is attempted",
+      "notes": [
+        "Pushing again without a diagnosed root cause is the retry-and-hope pattern this step exists to block"
+      ]
+    },
+    {
+      "id": "s9-review-gate",
+      "title": "Human review",
+      "kind": "gate",
+      "summary": "Human review required before merge",
+      "passWhen": "At least one approval from someone other than the PR author; CODEOWNERS approved on every protected path touched; any new commit after approval re-requires approval; no admin bypass of branch protection"
+    },
+    {
+      "id": "s10-merge-to-default",
+      "title": "Merge to default branch",
+      "kind": "action",
+      "summary": "Merge the reviewed, checked PR into the default branch",
+      "passWhen": "Merge happens only through a reviewed, checked PR; direct pushes to the default branch remain blocked; admins cannot bypass branch protection"
+    },
+    {
+      "id": "s11-attribution-record",
+      "title": "Record attribution telemetry",
+      "kind": "processor",
+      "summary": "Record attribution telemetry for the merge",
+      "passWhen": "Merge is tagged agent-authored (with the invoking human) in deploy metadata, queryable by IR as 'what did agent X touch'; SLSA Source Track marks this a 'trusted robot' action, not a 'trusted person' one",
+      "notes": [
+        "Optional: gittuf gives a forge-independent cryptographic provenance ledger (<4% storage overhead, <0.59s verification per push) if a second, non-GitHub-attestable record is wanted"
+      ]
+    },
+    {
+      "id": "halt",
+      "title": "Halt",
+      "kind": "action",
+      "summary": "Halt — do not retry the same push without a new diagnosis",
+      "passWhen": "Reason recorded; no further push or merge attempted without human triage"
+    }
+  ],
+  "edges": [
+    {
+      "from": "s1-branch-from-main",
+      "to": "s2-author-commits",
+      "kind": "next"
+    },
+    {
+      "from": "s2-author-commits",
+      "to": "s3-sign-commit-gate",
+      "kind": "next"
+    },
+    {
+      "from": "s3-sign-commit-gate",
+      "to": "s4-identity-token-gate",
+      "kind": "next"
+    },
+    {
+      "from": "s4-identity-token-gate",
+      "to": "s5-push-to-remote",
+      "kind": "next"
+    },
+    {
+      "from": "s5-push-to-remote",
+      "to": "s6-open-pr",
+      "kind": "next"
+    },
+    {
+      "from": "s5-push-to-remote",
+      "to": "s3-sign-commit-gate",
+      "kind": "requires"
+    },
+    {
+      "from": "s5-push-to-remote",
+      "to": "s4-identity-token-gate",
+      "kind": "requires"
+    },
+    {
+      "from": "s6-open-pr",
+      "to": "s7-required-checks-gate",
+      "kind": "next"
+    },
+    {
+      "from": "s7-required-checks-gate",
+      "to": "s9-review-gate",
+      "kind": "next"
+    },
+    {
+      "from": "s7-required-checks-gate",
+      "to": "s8-checks-failed-triage",
+      "kind": "onFail"
+    },
+    {
+      "from": "s8-checks-failed-triage",
+      "to": "s2-author-commits",
+      "kind": "next",
+      "condition": "root cause diagnosed and a fix is ready"
+    },
+    {
+      "from": "s8-checks-failed-triage",
+      "to": "halt",
+      "kind": "onFail"
+    },
+    {
+      "from": "s9-review-gate",
+      "to": "s10-merge-to-default",
+      "kind": "next"
+    },
+    {
+      "from": "s9-review-gate",
+      "to": "s7-required-checks-gate",
+      "kind": "requires"
+    },
+    {
+      "from": "s10-merge-to-default",
+      "to": "s11-attribution-record",
+      "kind": "next"
+    },
+    {
+      "from": "s10-merge-to-default",
+      "to": "s3-sign-commit-gate",
+      "kind": "requires"
+    },
+    {
+      "from": "s10-merge-to-default",
+      "to": "s4-identity-token-gate",
+      "kind": "requires"
+    },
+    {
+      "from": "s10-merge-to-default",
+      "to": "s9-review-gate",
+      "kind": "requires"
+    }
+  ],
+  "exportedAt": "2026-09-15T03:49:27.590Z"
+}
