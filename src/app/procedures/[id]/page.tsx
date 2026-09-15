@@ -17,19 +17,22 @@ export const metadata = {
 
 const DATA_DIR = path.join(process.cwd(), 'data');
 
+// Keyed by each graph's own `id` field, not its filename — the export
+// filename is just storage (data/harness-gates.procedure.json holds the
+// graph whose id is "critics-cut-v2-harness"); the URL is the graph's
+// self-declared identity, so a rename on disk can't silently break the route.
+function loadAllGraphs(): ProceduralGraph[] {
+  return readdirSync(DATA_DIR)
+    .filter((f) => f.endsWith('.procedure.json'))
+    .map((f) => JSON.parse(readFileSync(path.join(DATA_DIR, f), 'utf8')) as ProceduralGraph);
+}
+
 function loadGraph(id: string): ProceduralGraph | null {
-  try {
-    const raw = readFileSync(path.join(DATA_DIR, `${id}.procedure.json`), 'utf8');
-    return JSON.parse(raw) as ProceduralGraph;
-  } catch {
-    return null;
-  }
+  return loadAllGraphs().find((g) => g.id === id) ?? null;
 }
 
 export function generateStaticParams() {
-  return readdirSync(DATA_DIR)
-    .filter((f) => f.endsWith('.procedure.json'))
-    .map((f) => ({ id: f.replace(/\.procedure\.json$/, '') }));
+  return loadAllGraphs().map((g) => ({ id: g.id }));
 }
 
 export default async function ProcedurePage({ params }: { params: Promise<{ id: string }> }) {
