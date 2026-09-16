@@ -52,6 +52,7 @@ Locales follow BCP 47 (`pa-in` for Panjabi/India Gurmukhi). The locale dir-name 
 | R27 | No disability/mental-health metaphors ("blind to", "sanity check"…) — **awareness posts only** | Inclusive (APA) | **AUTO (notice)** |
 | R28 | Age: avoid "the elderly"/"senior citizens" ("elders"/"ਬਜ਼ੁਰਗ" OK) — **awareness posts only** | Inclusive (APA) | **AUTO (notice)** |
 | R29 | Country names use the Gurmukhi proper-noun glossary in `pa-in` body (UK → `ਯੂ.ਕੇ.`, USA → `ਅਮਰੀਕਾ`…) — citations/URLs allowlisted | Consistency (pa-in) | **AUTO** |
+| R30 | `audio_url` resolves to a real `.mp3`/`.m4a` under `public/audio/`; orphaned audio files flagged | Document | **AUTO** |
 
 ---
 
@@ -289,6 +290,15 @@ Country names with a canonical Gurmukhi form must use it in Gurmukhi body prose,
 
 **Allowlisted** (Latin country names are expected and fine here): the References/`ਹਵਾਲੇ` section, the Sources/`ਸਰੋਤ` line, and markdown link targets/URLs (e.g. `reportfraud.police.uk`). Agency proper nouns that embed a country — `National Fraud Database (UK)`, `Charity Commission for England and Wales` — belong in those zones; if one must appear in body prose, add `<!-- rigor: allow R29 -->`.
 
+## R30 — Post audio files (`audio_url` / `audio_kind`)  **AUTO**
+
+Posts may attach an audio track via frontmatter (see CLAUDE.md → Blog Post Format → Audio). The rule enforces both directions of the mapping:
+
+- **ERROR** when `audio_url` is set but: it doesn't start with `/audio/`, its extension isn't `.mp3`/`.m4a`, the file doesn't exist under `public/`, or `audio_kind` isn't `overview`/`read_aloud`. Also errors on `audio_kind` without `audio_url`.
+- **NOTICE** when a file under `public/audio/` is referenced by no post — usually a forgotten frontmatter mapping (staging a file ahead of its post is legitimate, hence not an error).
+
+Why it exists: the first audio integration attempt (SAY-372, June 2026) failed silently — player code and mappings can each exist without the other and nothing complains until a reader hits a dead player. This rule makes every half-wired state loud at build time. Supported extensions live in one place per layer: `AUDIO_EXTENSIONS` in `scripts/lint-content.mjs`, kept in sync with `MIME_BY_EXT` in `src/components/audio-overview.tsx`.
+
 ## Allowlisting a known false positive
 
 Add an HTML comment on the offending line:
@@ -303,4 +313,4 @@ The lint reads inline `<!-- rigor: allow R# -->` markers and skips the matching 
 
 ## Authored by
 
-Gurvinder Singh (SecurityLeader.ai). Rule catalog version `v1.3` — 2026-06-20 (added R29 country-name script-consistency rule + proper-noun glossary for `pa-in`). Prior: `v1.2` 2026-06-07 (R26–R28 APA inclusive-language rules, awareness-scoped; see `inclusive-language-apa.md`).
+Gurvinder Singh (SecurityLeader.ai). Rule catalog version `v1.4` — 2026-09-15 (merged PR #2: R29 country-name script-consistency rule + proper-noun glossary for `pa-in`, authored 2026-06-20 as `v1.3` but left unmerged for ~87 days — R30 post-audio integrity, added on `main` 2026-07-04 while R29 was still reserved, is unaffected and both rules are now active together). Prior: `v1.3` 2026-06-20 (R29, this PR, pre-merge); `v1.2` 2026-06-07 (R26–R28 APA inclusive-language rules, awareness-scoped; see `inclusive-language-apa.md`).

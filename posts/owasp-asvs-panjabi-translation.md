@@ -42,7 +42,7 @@ Attribution-ShareAlike 4.0 International License.
 ਅੰਤਰਰਾਸ਼ਟਰੀ ਲਾਇਸੈਂਸ ਅਧੀਨ ਜਾਰੀ ਕੀਤਾ ਗਿਆ ਹੈ.
 ```
 
-Notice the Gurmukhi numerals — ੪.੦ instead of 4.0. These details matter. They signal that this isn't a machine-translated afterthought. It's a deliberate effort to honor the script and the community it serves.
+Notice the Gurmukhi numerals — ੪.੦ instead of 4.0 — in that early draft. The community review settled this one the other way: the corpus now uses Western digits for versions, years, and quantities (5.0, not ੫.੦), matching how Punjabi University, Patiala writes modern technical text. Gurmukhi numerals are reserved for traditional contexts. That reversal is the point of reviewing in public — details like this get decided by the readers, not the translator.
 
 ## The Terminology Problem (And How We Solved It)
 
@@ -183,30 +183,23 @@ A major inspiration for this glossary work is Sikhri's [Guru Granth Sahib Dictio
 
 ## What's Done, What's Next
 
-As of this update, **eight chapters are bilingual and complete**, two more are actively in progress, and the work is live in [PR #3254](https://github.com/OWASP/ASVS/pull/3254):
+As of this update (22 August 2026), **fifteen of the standard's twenty-seven files are bilingual** — every chapter from the title page through V9, plus V12 — and the work is live in [PR #3254](https://github.com/OWASP/ASVS/pull/3254). Each one is readable on the [Review Hub](/blog/asvs-panjabi-review-hub) without a GitHub account.
 
-**Complete (8):**
+**Bilingual (15):**
 
-- Frontispiece — bilingual title page with full project credits
-- Preface — ASVS 5.0 principles, levels, and scope
-- Assessment & Certification
-- For Users of 4.0 (changes from v4.x)
-- V5 File Handling
-- V8 Authorization
-- V9 Self-contained Tokens
-- V12 Secure Communication
+- Title Page, Introduction, What is the ASVS?, Assessment & Certification, Changes from v4.x
+- V1 Encoding and Sanitization · V2 Validation and Business Logic · V3 Web Frontend Security · V4 API and Web Service
+- V5 File Handling · V6 Authentication · V7 Session Management · V8 Authorization · V9 Self-contained Tokens · V12 Secure Communication
 
-**In progress (2):** What-is-the-ASVS (0x03) and V6 Authentication (0x15) — headings and structure are bilingual; bodies are being completed now.
+**Still to come:** V10 OAuth and OIDC, V11 Cryptography, V13 Configuration, V14 Data Protection, V15 Secure Coding and Architecture, V16 Security Logging and Error Handling, V17 WebRTC, then the appendices, final checks, and a community review window.
 
-**Supporting material:** a 70-term security glossary with Gurmukhi translations and IAST romanization, a translation-rules file encoding the Gurmat language constraints and dictionary-lookup order, a reviewer-notes briefing, and an open-questions log tracking every deferred terminology decision.
-
-**Still to come:** the remaining security-requirement chapters (Encoding, Validation, Web Frontend, API, Session Management, OAuth/OIDC, Cryptography, Configuration, Data Protection, Secure Coding, Logging, WebRTC) plus appendices, final QA, and a community review window. Cadence is two to three chapters a week, smallest-first.
+**Supporting material:** a 70-term security glossary with Gurmukhi translations and IAST romanization, a translation-rules file encoding the Gurmat language constraints and dictionary-lookup order, a reviewer-notes briefing, and an open-questions log tracking every deferred terminology decision (now seventeen entries).
 
 ### Built for review, in the open
 
-Every chapter ships under a review-in-public model. An adversarial QA pass (run with the latest Claude Opus model) checks each chapter for script purity, terminology consistency, sentence-end orthography, and the Gurmat language constraints before it lands. The corpus is currently clean on all mechanical checks — the open items are genuine translation-judgment calls that *need human eyes*, which is exactly where you come in.
+Every chapter passes two gates before it is published. A mechanical check enforces script purity, sentence-end orthography, Western digits, locked terminology, and completeness — every requirement must appear in both languages with the same identifier and level. Then a second, independent reader compares the English and Panjabi clause by clause. That second pass has found a real meaning error in every chapter so far — most often a hard "must not" softened to "should not", or a technical verb mistranslated — which is exactly why it is not optional for a security standard. What remains are genuine translation-judgment calls that *need human eyes*, which is why the review pages exist.
 
-The single biggest open decision right now is structural: should every chapter use a full dual-block layout (English first, complete Panjabi mirror below), or a more compact code-switched style for the introductory chapters? That choice shapes the whole standard, and it's deliberately left open for the community to weigh in on. The full comparison, plus eleven terminology questions, lives in the [open-questions log on the PR](https://github.com/GeeksikhSecurity/ASVS/blob/panjabi-translation-v5/5.0/pa-IN/OPEN-QUESTIONS.md).
+The structural question — dual-block (English first, complete Panjabi mirror below) versus a compact code-switched style — has been decided in favour of dual-block for the whole corpus, so every sentence can be cross-checked. The earliest chapters written in the code-switched style have been retranslated to match. The remaining terminology questions live in the [open-questions log](https://github.com/GeeksikhSecurity/ASVS/blob/panjabi-translation-v5/5.0/pa-IN/OPEN-QUESTIONS.md).
 
 ## The Bigger Picture: Digital Seva
 
@@ -259,7 +252,7 @@ Security knowledge should be accessible to all.
 
 - **Security leaders:** Share this with Panjabi-speaking team members or forward the glossary to your localization team as a model for multilingual security documentation.
 - **Panjabi-speaking professionals:** Email gurvinder@securityleader.ai with "ASVS Panjabi Review" in the subject — even one term correction makes a difference.
-- **OWASP community members:** Review [PR #3254](https://github.com/OWASP/ASVS/pull/3254) and leave inline comments. Phase B chapters (V6 Authentication, V8 Authorization) are actively translating now and ready for in-progress review.
+- **OWASP community members:** Review [PR #3254](https://github.com/OWASP/ASVS/pull/3254) and leave inline comments. The full translation — all seventeen security-requirement chapters (V1–V17), the introductory chapters, and all five appendices — is now bilingual and ready for review.
 
 ## Board Talking Points
 
@@ -284,12 +277,31 @@ Security knowledge should be accessible to all.
 - [Review Hub — Start Here](/blog/asvs-panjabi-review-hub)
 - [Title Page (ਮੁੱਖ ਪੰਨਾ)](/blog/asvs-panjabi-review-frontispiece)
 - [Introduction (ਮੁਖਬੰਧ)](/blog/asvs-panjabi-review-preface)
-- [Assessment & Certification (ਮੁਲਾਂਕਣ ਅਤੇ ਪ੍ਰਮਾਣੀਕਰਨ)](/blog/asvs-panjabi-review-assessment-certification)
-- [Changes from v4.x (v4.x ਤੋਂ ਤਬਦੀਲੀਆਂ)](/blog/asvs-panjabi-review-changes-from-v4)
+- [What is the ASVS? (ASVS ਕੀ ਹੈ?)](/blog/asvs-panjabi-review-what-is-the-asvs)
+- [Assessment and Certification (ਮੁਲਾਂਕਣ ਅਤੇ ਸਰਟੀਫ਼ਿਕੇਸ਼ਨ)](/blog/asvs-panjabi-review-assessment-certification)
+- [Changes Compared to v4.x (v4.x ਦੇ ਮੁਕਾਬਲੇ ਤਬਦੀਲੀਆਂ)](/blog/asvs-panjabi-review-changes-from-v4)
+- [V1 Encoding and Sanitization (V1 ਏਨਕੋਡਿੰਗ ਅਤੇ ਸੈਨੀਟਾਈਜ਼ੇਸ਼ਨ)](/blog/asvs-panjabi-review-v1-encoding-and-sanitization)
+- [V2 Validation and Business Logic (V2 ਪ੍ਰਮਾਣਿਕਤਾ ਅਤੇ ਕਾਰੋਬਾਰੀ ਤਰਕ)](/blog/asvs-panjabi-review-v2-validation-and-business-logic)
+- [V3 Web Frontend Security (V3 ਵੈੱਬ ਫਰੰਟਐਂਡ ਸੁਰੱਖਿਆ)](/blog/asvs-panjabi-review-v3-web-frontend-security)
+- [V4 API and Web Service (V4 API ਅਤੇ ਵੈੱਬ ਸੇਵਾ)](/blog/asvs-panjabi-review-v4-api-and-web-service)
 - [V5 File Handling (V5 ਫ਼ਾਈਲ ਪ੍ਰਬੰਧਨ)](/blog/asvs-panjabi-review-v5-file-handling)
+- [V6 Authentication (V6 ਪ੍ਰਮਾਣੀਕਰਨ)](/blog/asvs-panjabi-review-v6-authentication)
+- [V7 Session Management (V7 ਸੈਸ਼ਨ ਪ੍ਰਬੰਧਨ)](/blog/asvs-panjabi-review-v7-session-management)
 - [V8 Authorization (V8 ਅਧਿਕਾਰੀਕਰਨ)](/blog/asvs-panjabi-review-v8-authorization)
 - [V9 Self-contained Tokens (V9 ਸਵੈ-ਨਿਰਭਰ ਟੋਕਨ)](/blog/asvs-panjabi-review-v9-self-contained-tokens)
+- [V10 OAuth and OIDC (V10 OAuth ਅਤੇ OIDC)](/blog/asvs-panjabi-review-v10-oauth-and-oidc)
+- [V11 Cryptography (V11 ਕ੍ਰਿਪਟੋਗ੍ਰਾਫ਼ੀ)](/blog/asvs-panjabi-review-v11-cryptography)
 - [V12 Secure Communication (V12 ਸੁਰੱਖਿਅਤ ਸੰਚਾਰ)](/blog/asvs-panjabi-review-v12-secure-communication)
+- [V13 Configuration (V13 ਸੰਰਚਨਾ)](/blog/asvs-panjabi-review-v13-configuration)
+- [V14 Data Protection (V14 ਡਾਟਾ ਸੁਰੱਖਿਆ)](/blog/asvs-panjabi-review-v14-data-protection)
+- [V15 Secure Coding and Architecture (V15 ਸੁਰੱਖਿਅਤ ਕੋਡਿੰਗ ਅਤੇ ਆਰਕੀਟੈਕਚਰ)](/blog/asvs-panjabi-review-v15-secure-coding-and-architecture)
+- [V16 Security Logging and Error Handling (V16 ਸੁਰੱਖਿਆ ਲੌਗਿੰਗ ਅਤੇ ਗਲਤੀ ਪ੍ਰਬੰਧਨ)](/blog/asvs-panjabi-review-v16-security-logging-and-error-handling)
+- [V17 WebRTC (ਵੈੱਬਆਰਟੀਸੀ)](/blog/asvs-panjabi-review-v17-webrtc)
+- [Appendix A: Glossary (ਅੰਤਿਕਾ A: ਸ਼ਬਦਾਵਲੀ)](/blog/asvs-panjabi-review-appendix-a-glossary)
+- [Appendix B: References (ਅੰਤਿਕਾ B: ਹਵਾਲੇ)](/blog/asvs-panjabi-review-appendix-b-references)
+- [Appendix C: Cryptography Standards (ਅੰਤਿਕਾ C: ਕ੍ਰਿਪਟੋਗ੍ਰਾਫ਼ੀ ਮਿਆਰ)](/blog/asvs-panjabi-review-appendix-c-cryptography)
+- [Appendix D: Recommendations (ਅੰਤਿਕਾ D: ਸਿਫ਼ਾਰਸ਼ਾਂ)](/blog/asvs-panjabi-review-appendix-d-recommendations)
+- [Appendix E - Contributors (ਅੰਤਿਕਾ E - ਯੋਗਦਾਨੀ)](/blog/asvs-panjabi-review-appendix-e-contributors)
 - [Glossary (ਸ਼ਬਦਾਵਲੀ)](/blog/asvs-panjabi-review-glossary)
 - [Translation Notes](https://github.com/GeeksikhSecurity/ASVS/blob/panjabi-translation-v5/5.0/pa-IN/TRANSLATION-NOTES.md)
 - [Review Plan](https://github.com/GeeksikhSecurity/ASVS/blob/panjabi-translation-v5/5.0/pa-IN/REVIEW-PLAN.md)

@@ -1,4 +1,5 @@
-import { getPostBySlug, getAllPosts, getAvailableTranslations } from '@/lib/posts';
+import { getPostBySlug, getAllPosts, getAvailableTranslations, postExists } from '@/lib/posts';
+import { notFound } from 'next/navigation';
 import { remark } from 'remark';
 import remarkGfm from 'remark-gfm';
 import html from 'remark-html';
@@ -9,6 +10,7 @@ import { CalendarIcon, ClockIcon } from '@/components/icons';
 import { ScrollProgress } from '@/components/scroll-progress';
 import { LanguageSwitcher } from '@/components/language-switcher';
 import { TranslationBanner } from '@/components/translation-banner';
+import { AudioOverview } from '@/components/audio-overview';
 import { LocaleBlogIndex } from '@/components/locale-blog-index';
 import { AuthorByline } from '@/components/author-byline';
 import { JsonLd } from '@/components/json-ld';
@@ -60,6 +62,7 @@ export async function generateMetadata({
     };
   }
 
+  if (!postExists(slug)) notFound();
   const post = getPostBySlug(slug);
   const siblings = getAvailableTranslations(slug);
 
@@ -101,6 +104,7 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
     return <LocaleBlogIndex locale={slug} />;
   }
 
+  if (!postExists(slug)) notFound();
   const post = getPostBySlug(slug);
   const siblings = getAvailableTranslations(slug);
   // Strip the leading H1 from markdown — the template already renders post.title in the header
@@ -173,6 +177,10 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
 
       <div className="container max-w-3xl py-16">
         <TranslationBanner locale="en" status={post.translation_status} />
+
+        {post.audioUrl && (
+          <AudioOverview url={post.audioUrl} kind={post.audioKind} locale="en" />
+        )}
 
         <div
           className="prose prose-lg max-w-none text-secondary"

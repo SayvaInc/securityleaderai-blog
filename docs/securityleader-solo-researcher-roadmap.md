@@ -10,6 +10,15 @@
 
 ---
 
+> **Sequencing update (2026-09-15):** A code-verified review found real
+> accuracy and accessibility corrections that should land *before* any of
+> the UX work below — a factual error, an overclaimed security guarantee, an
+> accessibility bug, and one already-fixed issue (PR #2) sitting unmerged for
+> ~87 days. See `docs/content-corrections-roadmap-2026-09-15.md`. Evidence
+> corrections and Panjabi usability first; visual polish second.
+
+---
+
 ## Guiding Principle
 
 Trail of Bits is a full security consultancy with 100+ engineers, a dedicated marketing team, and 258 open-source repositories built over 14 years. SecurityLeader.ai is one researcher with deep expertise, two active repos, and evenings and weekends.

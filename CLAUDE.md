@@ -47,6 +47,24 @@ tags: ["Tag1", "Tag2", "Tag3"]
 
 Blog post reading time is **automatically calculated** at 200 words/minute in `src/lib/posts.ts`. Do NOT hardcode it.
 
+### Audio (optional frontmatter)
+
+Posts may carry an audio track, rendered by `<AudioOverview />` (native browser
+`<audio>` controls — no custom player, no client JS) above the article body:
+
+```yaml
+audio_url: "/audio/pa-in/whatsapp-family-emergency-scams.m4a"  # must exist under /public
+audio_kind: "overview"   # 'overview' (NotebookLM-style AI discussion ABOUT the post)
+                         # | 'read_aloud' (verbatim narration of the post)
+```
+
+- `audio_kind` defaults to `overview`. The two kinds get different labels because
+  they are different things: an overview is an AI-generated two-host discussion and
+  is labeled as such; only a verbatim narration may be labeled "listen to this article."
+- Lint rule **R30** fails the build if `audio_url` points at a missing file or an
+  unsupported format (.mp3/.m4a only), and warns about orphaned files under
+  `public/audio/`. Never ship a mapping without its file, or vice versa.
+
 ---
 
 ## Research Article Format (TypeScript)
@@ -171,6 +189,24 @@ Cognitive debt is the cost of lost understanding — why decisions were made, ho
 
 - **Async params:** In Next.js 15+, dynamic route `params` are `Promise` objects. Always use `const { slug } = await params;` — never access `params.slug` directly.
 - **React 19 `cloneElement` typing:** `cloneElement` requires explicit generic type parameters for props. Use `isValidElement<{ className?: string }>(child)` and cast spread props as `Record<string, unknown>` when needed.
+
+---
+
+## Decision Capture & Daily Digest
+
+Working memory for AI-assisted sessions lives on disk, not in the chat context.
+
+- **During work:** after each meaningful task, append a short decision note to
+  `work/decision-log/YYYY-MM-DD.md`. Plain English, no jargon. Include: what
+  changed, why, what alternatives were considered, what was skipped and why,
+  verification results, and follow-ups. Keep a **"Do not retry"** section for
+  approaches that failed with a known root cause (licensing, auth, API limits)
+  so no future session rediscovers the same dead end.
+- **End of day:** the `decision-digest` sub-agent (`.claude/agents/decision-digest.md`)
+  summarizes that file into `outputs/daily-summary-YYYY-MM-DD.md`. The sub-agent
+  only summarizes — the main session makes the decisions.
+- Both directories are committed: the log is the loop's on-disk memory; the next
+  session picks up from it instead of re-deriving state.
 
 ---
 
@@ -304,14 +340,16 @@ Do NOT remove these overrides unless the parent packages (e.g., sucrase via Tail
 
 ### Known Accepted Risks
 
-**None as of June 20, 2026 — `npm audit` returns 0 vulnerabilities (verified, not assumed). Re-run `npm audit` before restating this; it was falsely "0" once while actually 5.**
+**None as of September 14, 2026 — `npm audit` returns 0 vulnerabilities (verified, not assumed). Re-run `npm audit` before restating this; it has gone stale twice now (falsely "0" while actually 5 on 2026-06-20's own prior claim, then again 6 — including 1 critical — by 2026-09-14).**
 
-This was reached by remediating the June 19 finding of 5 vulnerabilities (2 high, 3 moderate) in two phases:
+Remediation history:
 
-- **Phase A (non-breaking):** `npm audit fix` cleared the high-severity `next` and `picomatch` advisories; a `postcss: ^8.5.10` entry in `overrides` (plus bumping the direct `postcss` devDependency) forced Next's nested copy off the vulnerable `<8.5.10` XSS range (GHSA-qx2v-qp2m-jg93).
-- **Phase B (the gray-matter → js-yaml DoS, GHSA-h67p-54hq-rp68):** not a version bump — the only patched `js-yaml` (4.2.0) removed the `safeLoad`/`safeDump` that `gray-matter@4.0.3` (latest) calls, and npm's "fix" was a major **downgrade** to gray-matter 2.0.1. Resolved instead by **removing gray-matter entirely** and replacing it with a ~15-line `parseFrontmatter()` in `src/lib/posts.ts` backed by `js-yaml@4.2.0`'s `load` (per the "Remove over upgrade" rule + lean-deps policy — net dependency *reduction*). The parser preserves gray-matter's `content` leading-`\n` contract so the H1-strip invariant holds.
+- **Phase A (2026-06-20, non-breaking):** `npm audit fix` cleared the high-severity `next` and `picomatch` advisories; a `postcss: ^8.5.10` entry in `overrides` (plus bumping the direct `postcss` devDependency) forced Next's nested copy off the vulnerable `<8.5.10` XSS range (GHSA-qx2v-qp2m-jg93).
+- **Phase B (2026-06-20, the gray-matter → js-yaml DoS, GHSA-h67p-54hq-rp68):** not a version bump — the only patched `js-yaml` (4.2.0) removed the `safeLoad`/`safeDump` that `gray-matter@4.0.3` (latest) calls, and npm's "fix" was a major **downgrade** to gray-matter 2.0.1. Resolved instead by **removing gray-matter entirely** and replacing it with a ~15-line `parseFrontmatter()` in `src/lib/posts.ts` backed by `js-yaml@4.2.0`'s `load` (per the "Remove over upgrade" rule + lean-deps policy — net dependency *reduction*). The parser preserves gray-matter's `content` leading-`\n` contract so the H1-strip invariant holds.
+- **Phase C (2026-09-08, PR #4):** dependabot bumped `js-yaml` 4.2.0→4.3.1, `next` 16.2.9→16.2.11, plus transitive `nanoid`/`sharp`. Mid-PR, floating `next` on its normal `^16.2.3` caret pulled in 16.3.1–16.3.4 and hit a **separate, non-security regression**: Vercel's `onBuildComplete` packaging step failed with `ENOENT .next/next-server.js.nft.json` on this project's `output: 'standalone'` config (build succeeds locally and through static-page generation; only Vercel's own packaging step fails) — matches an open Vercel community report on the same 16.2.6→16.3.1+ path. Fixed by pinning `next` to an **exact** `16.2.11` (no caret) instead of the range, so a plain `npm install` can't silently float back into the broken line; added an `overrides` entry for `sharp` (next's own optional dependency) so its independent libvips security bump survived the next pin. Verified via a forced (no-cache) Vercel CLI deploy, `readyState: READY`.
+- **Phase D (2026-09-14):** `npm audit` found 6 vulnerabilities (1 critical, 4 high, 1 moderate) had accumulated since Phase C, including a **critical unauthenticated Next.js RCE** (GHSA-p293-qw3h-jr36 Windows-hosted RCE; GHSA-2xp9-vwfh-vxw4 Image Optimization AVIF RCE) — fixed only at `next >=16.3.3`, i.e. inside the exact range Phase C had just pinned *away from* for an unrelated packaging bug. Before force-bumping past a deliberate pin, re-tested the specific target version rather than assuming the old regression still applied: `npm audit fix` (non-breaking) cleared `js-yaml` (4.3.1→4.3.2, closes a third quadratic-CPU CVE variant not caught by the 4.3.1 bump), `browserslist`, `baseline-browser-mapping`, and `postcss-selector-parser` without touching the `next` pin. For `next` itself, force-bumped to `16.3.5` in an isolated git worktree and verified with a second forced (no-cache) Vercel preview deploy: `onBuildComplete` — the exact step that failed in Phase C — completed clean, `readyState: READY`, edge confirmed serving (SSO redirect headers present). The packaging bug does not reproduce at 16.3.5; re-pinned exact (no caret) as `"next": "16.3.5"`, same discipline as Phase C.
 
-Verified after each phase: `tsc --noEmit` clean, 43-page build, `<h1>` count = 1 on both new posts, hidden-post exclusion + tag/array parsing intact, `npm audit` = 0.
+Verified after each phase: `tsc --noEmit` clean, a page-count-matching build, `<h1>` count = 1, `npm audit` = 0. Phase C and D additionally verified via a real forced Vercel deploy (not just a local build) — this project's `output: 'standalone'` config has a packaging failure mode a local build cannot surface.
 
 ### Quarterly Review
 
@@ -412,7 +450,7 @@ When writing or editing the ASVS review page wrapper text, apply these substitut
 
 ### Current Page Count
 
-As of June 2026 the build generates **43 pages**. This grows as content is added — the ASVS Panjabi review series alone is now **10 hidden posts** (the original 4 wrapper pages plus v5, v8, v9, v12, assessment-certification, and changes-from-v4). Do not treat any fixed number as authoritative; confirm against `npm run build` output after content changes.
+As of August 2026 the build generates **62 pages**. This grows as content is added — the ASVS Panjabi review series is **29 hidden posts** (hub, glossary, title page, introduction, plus 25 chapter/appendix pages regenerated from the fork by the converter — see docs/asvs-review-pages-plan.md, scripts/asvs/). The sibling AISVS Panjabi review series is **19 hidden posts** (hub + all 18 chapter/appendix pages — scripts/aisvs/), submitted upstream as OWASP/AISVS#1128. Do not treat any fixed number as authoritative; confirm against `npm run build` output after content changes.
 
 ---
 
@@ -464,3 +502,13 @@ The following sibling projects have been patched and retired. They are no longer
 **Vercel projects deleted** on February 21, 2026 via `vercel project remove` to clear CVE-2025-55184 alerts. Local source code remains archived at the paths above.
 
 These projects should not receive new features. If reactivated, create a new Vercel project and run `npm audit` first.
+
+<!-- BEGIN:nextjs-agent-rules -->
+
+# This is NOT the Next.js you know
+
+This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
+
+This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
+
+<!-- END:nextjs-agent-rules -->
