@@ -69,7 +69,7 @@ Tracked here so incoming research integrates cleanly into the *single* glossary 
 ## Roadmap (tracked in Linear)
 
 - **Spoken-Panjabi TTS for bilingual posts** (Gemini natural spoken Panjabi via NotebookLM) — embed a single-voice read-aloud of the *translated* post instead of NotebookLM's default two-speaker "audio overview." Tracked in Linear: **SAY-372** (*SecurityLeader.ai Research & Standards*).
-- **APA 7th bilingual citation standard for Panjabi sources + AnmolLipi legacy decode** — research at [`Adapting Punjabi Citations to APA Style.md`](Adapting%20Punjabi%20Citations%20to%20APA%20Style.md). Transliterate non-Latin title + `[English translation]`, romanize author/publisher, period (not Dandi) in references. **Must reuse IAST (R23) romanization — do not add a second scheme.** Tracked in Linear: **SAY-373**.
+- **APA 7th bilingual citation standard for Panjabi sources + AnmolLipi legacy decode** — research not yet committed to this repo (drafted as local working notes; link removed here rather than pointing at a file that doesn't exist in version control). Transliterate non-Latin title + `[English translation]`, romanize author/publisher, period (not Dandi) in references. **Must reuse IAST (R23) romanization — do not add a second scheme.** Tracked in Linear: **SAY-373**.
 
 ## Cross-project scope (this is a shared framework, not a securityleader.ai feature)
 

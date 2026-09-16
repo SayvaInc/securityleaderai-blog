@@ -276,7 +276,7 @@ Apply APA bias-free language to **security-awareness** posts (tags include `digi
 
 ## R29 — Country-name script consistency in `pa-in`  **AUTO**
 
-Country names with a canonical Gurmukhi form must use it in Gurmukhi body prose, so the country list reads consistently (USA/Canada/Australia/India were always Gurmukhi; the UK was the lone Latin holdout). The proper-noun glossary lives in `scripts/lint-content.mjs` (`COUNTRY_GLOSSARY`). Each row lists **every common Latin spelling** so the rule is robust corpus-wide — when a new rendering appears, add the variant here rather than fixing posts one-off:
+Country names with a canonical Gurmukhi form must use it in all non-allowlisted `pa-in` text — body prose, headings, and table cells alike — so the country list reads consistently (USA/Canada/Australia/India were always Gurmukhi; the UK was the lone Latin holdout). The proper-noun glossary lives in `scripts/lint-content.mjs` (`COUNTRY_GLOSSARY`). Each row lists **every common Latin spelling** so the rule is robust corpus-wide — when a new rendering appears, add the variant here rather than fixing posts one-off:
 
 | Latin variants (all caught) | Gurmukhi | Note |
 |-----------------------------|----------|------|

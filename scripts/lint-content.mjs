@@ -111,7 +111,11 @@ const ROMANIZATION_DISALLOWED = [
 // variants here (not per-post fixes) when a new rendering shows up.
 const COUNTRY_GLOSSARY = [
   { variants: ['UK', 'U.K.', 'United Kingdom'],                       gurmukhi: 'ਯੂ.ਕੇ.' },
-  { variants: ['USA', 'U.S.A.', 'U.S.', 'United States', 'America'],  gurmukhi: 'ਅਮਰੀਕਾ' },
+  // Bare "America" deliberately excluded: it's a substring of "South
+  // America", "Latin America", "Central America" — the lookaround-based
+  // match would misfire on those (different places entirely) and force an
+  // incorrect ਅਮਰੀਕਾ rewrite. USA/U.S.A./U.S./United States are unambiguous.
+  { variants: ['USA', 'U.S.A.', 'U.S.', 'United States'],             gurmukhi: 'ਅਮਰੀਕਾ' },
   { variants: ['England'],                                           gurmukhi: 'ਇੰਗਲੈਂਡ' },
   { variants: ['Britain', 'Great Britain'],                          gurmukhi: 'ਬਰਤਾਨੀਆ' },
   { variants: ['Australia'],                                         gurmukhi: 'ਆਸਟ੍ਰੇਲੀਆ' },
