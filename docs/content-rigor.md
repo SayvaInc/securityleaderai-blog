@@ -51,7 +51,7 @@ Locales follow BCP 47 (`pa-in` for Panjabi/India Gurmukhi). The locale dir-name 
 | R26 | Person-first language (no "victim"/`ਪੀੜਤ`) — **awareness posts only** | Inclusive (APA) | **AUTO (notice)** |
 | R27 | No disability/mental-health metaphors ("blind to", "sanity check"…) — **awareness posts only** | Inclusive (APA) | **AUTO (notice)** |
 | R28 | Age: avoid "the elderly"/"senior citizens" ("elders"/"ਬਜ਼ੁਰਗ" OK) — **awareness posts only** | Inclusive (APA) | **AUTO (notice)** |
-| R29 | *Reserved* — country-name Gurmukhi consistency (`ਯੂ.ਕੇ.`), introduced by PR #2 | Translation | **AUTO** |
+| R29 | Country names use the Gurmukhi proper-noun glossary in `pa-in` body (UK → `ਯੂ.ਕੇ.`, USA → `ਅਮਰੀਕਾ`…) — citations/URLs allowlisted | Consistency (pa-in) | **AUTO** |
 | R30 | `audio_url` resolves to a real `.mp3`/`.m4a` under `public/audio/`; orphaned audio files flagged | Document | **AUTO** |
 
 ---
@@ -274,6 +274,22 @@ Apply APA bias-free language to **security-awareness** posts (tags include `digi
 
 > Not covered by these rules: "master key" / skeleton-key metaphors (locksmithing, intentionally kept) and `whitelist → allowlist` (house style / R-class glossary, not APA scope).
 
+## R29 — Country-name script consistency in `pa-in`  **AUTO**
+
+Country names with a canonical Gurmukhi form must use it in all non-allowlisted `pa-in` text — body prose, headings, and table cells alike — so the country list reads consistently (USA/Canada/Australia/India were always Gurmukhi; the UK was the lone Latin holdout). The proper-noun glossary lives in `scripts/lint-content.mjs` (`COUNTRY_GLOSSARY`). Each row lists **every common Latin spelling** so the rule is robust corpus-wide — when a new rendering appears, add the variant here rather than fixing posts one-off:
+
+| Latin variants (all caught) | Gurmukhi | Note |
+|-----------------------------|----------|------|
+| UK · U.K. · United Kingdom | `ਯੂ.ਕੇ.` | Transliteration (matches the ASVS loan-word style, e.g. `API → ਏ.ਪੀ.ਆਈ.`). **Deliberately not** `ਇੰਗਲੈਂਡ`/England — the UK-wide data covers Scotland, Wales & N. Ireland too. |
+| USA · U.S.A. · U.S. · United States · America | `ਅਮਰੀਕਾ` | |
+| England | `ਇੰਗਲੈਂਡ` | Only when England specifically is meant (e.g. "England and Wales" jurisdiction). |
+| Britain · Great Britain | `ਬਰਤਾਨੀਆ` | |
+| Australia | `ਆਸਟ੍ਰੇਲੀਆ` | |
+| Canada | `ਕੈਨੇਡਾ` | |
+| India | `ਭਾਰਤ` | |
+
+**Allowlisted** (Latin country names are expected and fine here): the References/`ਹਵਾਲੇ` section, the Sources/`ਸਰੋਤ` line, and markdown link targets/URLs (e.g. `reportfraud.police.uk`). Agency proper nouns that embed a country — `National Fraud Database (UK)`, `Charity Commission for England and Wales` — belong in those zones; if one must appear in body prose, add `<!-- rigor: allow R29 -->`.
+
 ## R30 — Post audio files (`audio_url` / `audio_kind`)  **AUTO**
 
 Posts may attach an audio track via frontmatter (see CLAUDE.md → Blog Post Format → Audio). The rule enforces both directions of the mapping:
@@ -297,4 +313,4 @@ The lint reads inline `<!-- rigor: allow R# -->` markers and skips the matching 
 
 ## Authored by
 
-Gurvinder Singh (SecurityLeader.ai). Rule catalog version `v1.4` — 2026-07-04 (added R30 post-audio integrity; R29 reserved for the country-name consistency rule arriving in PR #2 / catalog v1.3).
+Gurvinder Singh (SecurityLeader.ai). Rule catalog version `v1.4` — 2026-09-15 (merged PR #2: R29 country-name script-consistency rule + proper-noun glossary for `pa-in`, authored 2026-06-20 as `v1.3` but left unmerged for ~87 days — R30 post-audio integrity, added on `main` 2026-07-04 while R29 was still reserved, is unaffected and both rules are now active together). Prior: `v1.3` 2026-06-20 (R29, this PR, pre-merge); `v1.2` 2026-06-07 (R26–R28 APA inclusive-language rules, awareness-scoped; see `inclusive-language-apa.md`).
