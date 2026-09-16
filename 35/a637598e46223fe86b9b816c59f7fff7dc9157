@@ -1,0 +1,199 @@
+docs/content-rigor.md
+  s_250ccfafd1b190::t_f544bd089082b4 316
+.claude/agents/decision-digest.md
+  s_250ccfafd1b190::t_280015d50e9fcd 1-48
+CLAUDE.md
+  s_250ccfafd1b190::t_38e200851bebf0 50-67,195-212,343,345,347-350,352,453,505-514
+SECURITY.md
+  s_250ccfafd1b190::t_1d4b9acb34d5dd 1-15
+docs/bilingual-blog-sop.md
+  s_250ccfafd1b190::t_3e187f146cb491 168-187
+docs/content-corrections-roadmap-2026-09-15.md
+  s_250ccfafd1b190::t_8c7803f0461fbf 1-210
+docs/securityleader-solo-researcher-roadmap.md
+  s_250ccfafd1b190::t_aee94663f51695 13-21
+outputs/daily-summary-2026-07-04.md
+  s_250ccfafd1b190::t_eb1f6858de3ede 1-126
+package-lock.json
+  s_250ccfafd1b190::t_e695cc9bc9ed14 11-12,45-47,55-57,65-67,77,83,87-89,99,105-124,128-130,144-146,160-162,166-168,179-181,185-187,198-200,204-206,217-219,223-225,236-238,242-244,255-257,261-263,274-276,280-282,293-295,299-301,312-314,318-320,327,333,337-339,343-345,352,358,362-364,368-370,377,383,387-389,393-395,402,408,412-414,418-420,427,433,437-439,443-445,452,458,462-464,468-470,477,483,487-489,493-495,502,508,512-530,534,537,540,547-549,559,566-568,578,585-587,597,643-645,649-651,665-667,681-683,700-702,719-721,738-740,757-759,773-775,827-829,1012-1014,1050-1052,1070-1074,1094-1096,1314-1316,1612-1614,2489-2491,2507-2509,2512-2513,2516,2526-2534,2560-2562,2564-2567,2646-2648,2665,2787-2789,3041-3043,3054-3056,3060,3062,3065,3071-3100,3234-3236,3473-3475
+package.json
+  s_250ccfafd1b190::t_abe3e3c7963ec5 14-15,36-37
+posts-i18n/pa-in/global-scam-alert-2026.md
+  s_250ccfafd1b190::t_7fd0dd33cba7b6 8-9
+posts-i18n/pa-in/gurdwara-charity-donation-fraud.md
+  s_250ccfafd1b190::t_aec61de8da6572 8-9
+posts-i18n/pa-in/reporting-centers-onepager.md
+  s_250ccfafd1b190::t_7db4a2243d4099 8-9
+posts-i18n/pa-in/tech-support-scam-elders.md
+  s_250ccfafd1b190::t_f92a376d71047c 8-9
+posts-i18n/pa-in/whatsapp-family-emergency-scams.md
+  s_250ccfafd1b190::t_17660ae4c0b821 8-9
+posts/agent-git-baseline.md
+  s_250ccfafd1b190::t_29af8575096bfc 1-56
+posts/aisvs-panjabi-review-appendix-a-glossary.md
+  s_250ccfafd1b190::t_382e96032d9f02 1-480
+posts/aisvs-panjabi-review-appendix-b-controls-inventory.md
+  s_250ccfafd1b190::t_c760473d69c59e 1-785
+posts/aisvs-panjabi-review-appendix-c-ai-code-generation.md
+  s_250ccfafd1b190::t_a7516269311ef3 1-519
+posts/aisvs-panjabi-review-c1-training-data-integrity.md
+  s_250ccfafd1b190::t_8b0d2f59b02a6e 1-109
+posts/aisvs-panjabi-review-c10-mcp-security.md
+  s_250ccfafd1b190::t_d9134f20e42331 1-144
+posts/aisvs-panjabi-review-c11-adversarial-robustness.md
+  s_250ccfafd1b190::t_84d36281025b2c 1-132
+posts/aisvs-panjabi-review-c12-monitoring-and-logging.md
+  s_250ccfafd1b190::t_a164fcee6ff907 1-156
+posts/aisvs-panjabi-review-c2-input-validation.md
+  s_250ccfafd1b190::t_2df78cc7963b3c 1-91
+posts/aisvs-panjabi-review-c3-model-lifecycle-management.md
+  s_250ccfafd1b190::t_f5f4a373566cf0 1-143
+posts/aisvs-panjabi-review-c4-infrastructure.md
+  s_250ccfafd1b190::t_7265c5a9cfc075 1-110
+posts/aisvs-panjabi-review-c5-access-control-and-identity.md
+  s_250ccfafd1b190::t_732b4c8ce34d5e 1-105
+posts/aisvs-panjabi-review-c6-supply-chain.md
+  s_250ccfafd1b190::t_5a1cbad714573e 1-82
+posts/aisvs-panjabi-review-c7-model-behavior.md
+  s_250ccfafd1b190::t_78faf2a8833bac 1-124
+posts/aisvs-panjabi-review-c8-memory-embeddings-and-vector-database.md
+  s_250ccfafd1b190::t_a99433d01feec0 1-105
+posts/aisvs-panjabi-review-c9-orchestration-and-agentic-action.md
+  s_250ccfafd1b190::t_75c164a9ef1fc7 1-196
+posts/aisvs-panjabi-review-frontispiece.md
+  s_250ccfafd1b190::t_079ee9b36dccde 1-115
+posts/aisvs-panjabi-review-hub.md
+  s_250ccfafd1b190::t_9724b42384c17d 1-93
+posts/aisvs-panjabi-review-preface.md
+  s_250ccfafd1b190::t_46746b22e135a1 1-70
+posts/aisvs-panjabi-review-using-aisvs.md
+  s_250ccfafd1b190::t_46f8773b71d447 1-184
+posts/asvs-panjabi-review-appendix-a-glossary.md
+  s_250ccfafd1b190::t_577047cd943ed0 1-196
+posts/asvs-panjabi-review-appendix-b-references.md
+  s_250ccfafd1b190::t_a3a879d153f01e 1-75
+posts/asvs-panjabi-review-appendix-c-cryptography.md
+  s_250ccfafd1b190::t_66b3126be27fbe 1-613
+posts/asvs-panjabi-review-appendix-d-recommendations.md
+  s_250ccfafd1b190::t_e4e46e59b10aeb 1-113
+posts/asvs-panjabi-review-appendix-e-contributors.md
+  s_250ccfafd1b190::t_d351a4615c70ef 1-94
+posts/asvs-panjabi-review-assessment-certification.md
+  s_250ccfafd1b190::t_89bf7e40f0636f 2,4,10,12,18-19,21,23,25,27,29-30,32,34,36-37,39,41,43-44,46,48,50,52,54,56,58-59,61,63,65,67-101,105
+posts/asvs-panjabi-review-changes-from-v4.md
+  s_250ccfafd1b190::t_02f51349cb712a 2,4,10,12,18-19,21,23,25-31,34-61,63,65,67,69-70,72,74,76-77,79-80,82,84,86,88,90-92,94-96,98,100,102,104,106-107,109,111,113,115,117-128,131-153,155,157-158,160,162,164,166,168,170,172-173,175,177,179,181,185
+posts/asvs-panjabi-review-frontispiece.md
+  s_250ccfafd1b190::t_ec7778f8e9ef20 80,82
+posts/asvs-panjabi-review-glossary.md
+  s_250ccfafd1b190::t_b59bf48ed44c0a 154
+posts/asvs-panjabi-review-hub.md
+  s_250ccfafd1b190::t_6be7b8bc8f6c8b 24,30-36,38-39,42-43,45-54,82-83,102
+posts/asvs-panjabi-review-preface.md
+  s_250ccfafd1b190::t_a1113a89f83560 73
+posts/asvs-panjabi-review-v1-encoding-and-sanitization.md
+  s_250ccfafd1b190::t_93fc6d3011decd 1-204
+posts/asvs-panjabi-review-v10-oauth-and-oidc.md
+  s_250ccfafd1b190::t_c003ff4799d710 1-325
+posts/asvs-panjabi-review-v11-cryptography.md
+  s_250ccfafd1b190::t_9712c5e8c4a30c 1-218
+posts/asvs-panjabi-review-v12-secure-communication.md
+  s_250ccfafd1b190::t_66670b160b2aaf 102,106,122
+posts/asvs-panjabi-review-v13-configuration.md
+  s_250ccfafd1b190::t_bce69ddd1a08ae 1-146
+posts/asvs-panjabi-review-v14-data-protection.md
+  s_250ccfafd1b190::t_1ba42164f9b0ee 1-122
+posts/asvs-panjabi-review-v15-secure-coding-and-architecture.md
+  s_250ccfafd1b190::t_63caaffe66151d 1-161
+posts/asvs-panjabi-review-v16-security-logging-and-error-handling.md
+  s_250ccfafd1b190::t_4d5f8bafe4a6ac 1-174
+posts/asvs-panjabi-review-v17-webrtc.md
+  s_250ccfafd1b190::t_1486c8f2127120 1-154
+posts/asvs-panjabi-review-v2-validation-and-business-logic.md
+  s_250ccfafd1b190::t_2674e4412e922c 1-152
+posts/asvs-panjabi-review-v3-web-frontend-security.md
+  s_250ccfafd1b190::t_d0a5d3101574e9 1-202
+posts/asvs-panjabi-review-v4-api-and-web-service.md
+  s_250ccfafd1b190::t_98aa2ac7d63b9e 1-135
+posts/asvs-panjabi-review-v5-file-handling.md
+  s_250ccfafd1b190::t_e1eeffd4a3b29c 23,116
+posts/asvs-panjabi-review-v6-authentication.md
+  s_250ccfafd1b190::t_5fd1e1f9d28193 1-330
+posts/asvs-panjabi-review-v7-session-management.md
+  s_250ccfafd1b190::t_2ee17beb5c7540 1-189
+posts/asvs-panjabi-review-v8-authorization.md
+  s_250ccfafd1b190::t_5a77e9ee5d8fe0 107,121
+posts/asvs-panjabi-review-v9-self-contained-tokens.md
+  s_250ccfafd1b190::t_06a1a2513f84c4 23,34,45,68-69,80,86
+posts/asvs-panjabi-review-what-is-the-asvs.md
+  s_250ccfafd1b190::t_c671ca4fc8e626 1-378
+posts/owasp-asvs-panjabi-translation.md
+  s_250ccfafd1b190::t_773380d62a5608 45,186,188,190-192,194,196,200,202,255,280-286,288-289,292-293,295-304
+posts/secrets-echo-guard.md
+  s_250ccfafd1b190::t_fc3b3714950811 1-53
+posts/tool-poisoning-guard.md
+  s_250ccfafd1b190::t_ae8667117acf39 1-55
+scripts/aisvs/README.md
+  s_250ccfafd1b190::t_857caffa16cac4 1-24
+scripts/aisvs/build-review-posts.py
+  s_250ccfafd1b190::t_91c5e024f276a7 1-103
+scripts/asvs/README.md
+  s_250ccfafd1b190::t_9f2fade5aed343 1-36
+scripts/asvs/briefs/REVIEWER-BRIEF.md
+  s_250ccfafd1b190::t_9a652b37f978b9 1-33
+scripts/asvs/briefs/TRANSLATOR-BRIEF.md
+  s_250ccfafd1b190::t_af65277b960706 1-61
+scripts/asvs/build-review-posts.py
+  s_250ccfafd1b190::t_f0a139e558163e 1-113
+scripts/asvs/qa-pa-chapter.py
+  s_250ccfafd1b190::t_d47319455fda60 1-76
+scripts/asvs/update-review-hub.py
+  s_250ccfafd1b190::t_1c9bef03f2d06d 1-72
+src/app/blog/[slug]/[post]/page.tsx
+  s_250ccfafd1b190::t_2f3909745e6e88 18,192-195
+src/app/blog/[slug]/page.tsx
+  s_250ccfafd1b190::t_952db0947bc809 1-2,13,65,107,181-184
+src/app/mindmap-demo/page.tsx
+  s_250ccfafd1b190::t_8bdc09a60b0458 1-63
+src/app/mindmap-demo/post/page.tsx
+  s_250ccfafd1b190::t_5a9ee3b5214f9b 1-46
+src/components/PreziMindMap.tsx
+  s_250ccfafd1b190::t_ffcb1e614659ce 1-263
+src/components/audio-overview.tsx
+  s_250ccfafd1b190::t_a1f5ae2f6c931d 1-81
+src/lib/locales.ts
+  s_250ccfafd1b190::t_fb603e033cd4e9 21-38,51-52,63-76
+src/lib/markdown-to-mindmap.ts
+  s_250ccfafd1b190::t_12e9bdaf405517 1-92
+src/lib/mindmap-layout.ts
+  s_250ccfafd1b190::t_cc72bf60da5e7a 1-109
+src/lib/mindmap-types.ts
+  s_250ccfafd1b190::t_5ad9773722470c 1-14
+src/lib/posts.ts
+  s_250ccfafd1b190::t_ec95302be6f697 4,68-75,132-137,161-165
+src/lib/pyramid.ts
+  s_250ccfafd1b190::t_41f1ae69fa94d5 1-87
+work/decision-log/2026-07-04.md
+  s_250ccfafd1b190::t_d23f909d79e8ac 1-127
+work/decision-log/2026-07-05.md
+  s_250ccfafd1b190::t_7371d91353b890 1-72
+work/decision-log/2026-09-06.md
+  s_250ccfafd1b190::t_8018a45020825c 1-72
+scripts/lint-content.mjs
+  s_250ccfafd1b190::t_6bcf86b08b2e6c 128-136,260-282,557-579
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "35a637598e46223fe86b9b816c59f7fff7dc9157",
+  "prompts": {},
+  "sessions": {
+    "s_250ccfafd1b190": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "39f28a6d-2dc6-4ebb-8e80-d7b1b33f19cd",
+        "model": "claude-sonnet-5"
+      },
+      "human_author": "GeeksikhSecurity <gurvinder@sayvainc.com>"
+    }
+  }
+}
