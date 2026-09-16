@@ -26,20 +26,36 @@ jump ahead of the items below.
 
 ---
 
-## Standout finding: item 7 is already fixed and sitting unmerged
+## Standout finding: item 7 — DONE (2026-09-16)
 
 The review's complaint about standalone Latin "UK" in Panjabi content
 (item 7 below) turned out not to be a new bug. **PR #2 — "pa-in: UK → ਯੂ.ਕੇ.
-country-name consistency + R29 lint guard" — has been open since 2026-06-20
+country-name consistency + R29 lint guard" — had been open since 2026-06-20
 (~87 days)** with the exact fix already committed (`dacb0d5`, `8d58abd`).
-`docs/content-rigor.md` on `main` even documents R29 as *"Reserved... arriving
-in PR #2"* — the rule is written up but the branch never landed.
+`docs/content-rigor.md` documented R29 as *"Reserved... arriving in PR #2"*
+for that entire time — the rule was written up but the branch never landed.
 
-This is the textbook case the global Avoidance Detection rule describes: a
-PR open 14+ days with no sign of a genuine blocker. **Before writing any new
-code for item 7, review and merge PR #2.** That alone fixes the Latin-UK
-finding across every `posts-i18n/pa-in/*.md` file at once, and turns R29 from
-documented-but-inert into an enforced CI gate.
+Reviewed, resolved (3 months of `main` drift had produced real merge
+conflicts in `docs/content-rigor.md` and `scripts/lint-content.mjs` — both
+"keep both, non-competing rules" merges, no logic overlap), and verified
+end-to-end before merging: `tsc`/`lint:code`/`lint:content` clean, R29
+confirmed to fire on an injected regression and stay silent on the
+legitimate Sources-line citation, `ਯੂ.ਕੇ.` confirmed rendering in all 5 built
+pa-in pages, real CI (Code Quality / Content Rigor / Supply Chain Audit) green.
+
+cubic's automated review on the PR caught 3 real issues during this pass
+(verified against actual code before fixing, not taken on faith): R29's
+`COUNTRY_GLOSSARY` mapped bare "America" → `ਅਮਰੀਕਾ`, which would misfire on
+"South/Latin/Central America" (no current post triggers it, but the class of
+bug was real — fixed by dropping the bare form); the R29 doc said "body
+prose" when the rule (and the PR's own description) actually covers all
+non-allowlisted text including headings/tables (doc fixed); a roadmap link
+to `Adapting Punjabi Citations to APA Style.md` was dead — that file was
+never committed to the repo (link removed).
+
+**Merged as `95b80d2`.** R29 is now a live, enforced CI gate — this was the
+textbook Avoidance Detection case (a PR open 14+ days with no genuine
+blocker), and it's closed.
 
 ---
 
@@ -142,8 +158,8 @@ check against the SOP's verbatim-transcript claim directly.
 **Energy:** Berry to verify (just listen + compare transcript), Espresso to
 actually ship the verbatim pipeline live once the GEMINI_API_KEY run happens.
 
-### 7. Standalone Latin "UK" in Panjabi content — CONFIRMED, already fixed, unmerged
-See "Standout finding" above. **Action: review + merge PR #2**, not a new fix.
+### 7. Standalone Latin "UK" in Panjabi content — DONE (2026-09-16)
+See "Standout finding" above. PR #2 merged as `95b80d2`.
 
 ---
 
@@ -197,7 +213,7 @@ do this one first.
 
 | Order | Work | Why this order | Completion evidence |
 |---|---|---|---|
-| 1 | Merge PR #2 (R29 + UK→ਯੂ.ਕੇ.) | Already done, zero new work, unblocks the lint gate | `npm run lint:content` shows R29 active; grep for bare `\bUK\b` in `posts-i18n/pa-in/*.md` returns nothing |
+| 1 | ~~Merge PR #2 (R29 + UK→ਯੂ.ਕੇ.)~~ **DONE 2026-09-16** | Zero new work, unblocked the lint gate | Merged `95b80d2`; `npm run lint:content` shows R29 active; grep for bare `\bUK\b` in `posts-i18n/pa-in/*.md` returns nothing (Sources-line citations correctly allowlisted) |
 | 2 | Items 1–4, 7 (claim wording, emergency guidance, IDCARE contacts) | Factual corrections, no design decisions needed, small independent edits | Diffs reviewed per file; consider a native-speaker pass on item 3 |
 | 3 | Item 5 (root `lang`) — after a design decision on approach | Needs an App Router pattern decision first | Panjabi page root `<html lang="pa-IN">` confirmed via view-source |
 | 4 | Homepage topic links + research tab URL sync (do tab-sync first) | One depends on the other | Selecting a tab updates the URL; topic cards land pre-filtered |
