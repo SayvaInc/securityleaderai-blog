@@ -1,0 +1,23 @@
+scripts/lint-content.mjs
+  s_250ccfafd1b190::t_32aa983217c800 114-118
+docs/content-rigor.md
+  s_250ccfafd1b190::t_be836d56caa195 279
+docs/translation-engineering-log.md
+  s_250ccfafd1b190::t_fe26a7b11a9b0d 72
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "c32e4661c8f007adabcfd5286a4e1983074ce4f3",
+  "prompts": {},
+  "sessions": {
+    "s_250ccfafd1b190": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "39f28a6d-2dc6-4ebb-8e80-d7b1b33f19cd",
+        "model": "claude-sonnet-5"
+      },
+      "human_author": "GeeksikhSecurity <gurvinder@sayvainc.com>"
+    }
+  }
+}
