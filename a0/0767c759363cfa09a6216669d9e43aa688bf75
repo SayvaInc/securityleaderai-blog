@@ -1,0 +1,21 @@
+posts/devops-security-paradox.md
+  s_041be9f72ede4e::t_e5a9fdd2671152 70-71
+public/images/devops-security-paradox-gcp.svg
+  s_041be9f72ede4e::t_87ee5a7fb2a18b 1-137
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "a00767c759363cfa09a6216669d9e43aa688bf75",
+  "prompts": {},
+  "sessions": {
+    "s_041be9f72ede4e": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "e7e29733-71b5-4139-886e-969db97eec73",
+        "model": "claude-sonnet-5"
+      },
+      "human_author": "GeeksikhSecurity <gurvinder@sayvainc.com>"
+    }
+  }
+}
