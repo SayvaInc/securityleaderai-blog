@@ -1,0 +1,137 @@
+<svg width="100%" viewBox="0 0 840 750" xmlns="http://www.w3.org/2000/svg" role="img">
+  <title>The DevOps Security Paradox: Bolted On vs. Embedded</title>
+  <defs>
+    <style>
+      :root {
+        --gc-blue: #4285F4;
+        --gc-green: #34A853;
+        --gc-yellow: #FBBC04;
+        --gc-red: #EA4335;
+        --gc-charcoal: #202124;
+        --gc-gray: #5F6368;
+        --gc-border: #DADCE0;
+        --gc-bg: #F8F9FA;
+        --gc-blue-tint: #E8F0FE;
+        --gc-green-tint: #E6F4EA;
+        --gc-red-tint: #FCEAEA;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --gc-charcoal: #F1F3F4;
+          --gc-gray: #BDC1C6;
+          --gc-border: #4D4D4D;
+          --gc-bg: #1F1F1F;
+          --gc-blue-tint: #0D2C7F;
+          --gc-green-tint: #0D4D20;
+          --gc-red-tint: #5C2C2C;
+        }
+        .node-yellow { fill: #4D4D4D; }
+      }
+
+      .node-blue { fill: var(--gc-blue-tint); stroke: var(--gc-blue); stroke-width: 1.5px; }
+      .node-yellow { fill: #FFFCF0; stroke: var(--gc-yellow); stroke-width: 1.5px; }
+      .node-green { fill: var(--gc-green-tint); stroke: var(--gc-green); stroke-width: 1.5px; }
+      .node-red { fill: var(--gc-red-tint); stroke: var(--gc-red); stroke-width: 1.5px; }
+
+      .label-primary { font-size: 14px; font-weight: 500; color: var(--gc-charcoal); font-family: Roboto, Inter, sans-serif; }
+      .label-secondary { font-size: 12px; font-weight: 400; color: var(--gc-gray); font-family: Roboto, Inter, sans-serif; }
+
+      .connector-blue { stroke: var(--gc-blue); stroke-width: 2px; }
+      .connector-green { stroke: var(--gc-green); stroke-width: 2px; }
+      .connector-red { stroke: var(--gc-red); stroke-width: 2px; stroke-dasharray: 4 3; }
+
+      .group-container { fill: var(--gc-blue-tint); stroke: var(--gc-blue); stroke-width: 2px; stroke-dasharray: 6 4; }
+      .group-label { font-size: 13px; font-weight: 500; color: var(--gc-blue); }
+
+    </style>
+    
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="var(--gc-blue)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="arrow-green" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="var(--gc-green)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="arrow-red" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="var(--gc-red)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+  <text class="label-primary" x="420" y="30" text-anchor="middle" style="font-size: 18px; font-weight: 500;">The DevOps Security Paradox: Bolted On vs. Embedded</text>
+  <text class="group-label" x="40" y="65">Traditional: Security Bolted On</text>
+  <g>
+    <rect x="40" y="80" width="320" height="70" rx="12" class="node-blue"/>
+    <text class="label-primary" x="200.0" y="111" text-anchor="middle">Code</text>
+  <text class="label-secondary" x="200.0" y="138" text-anchor="middle">Feature development</text>
+  </g>
+  <line x1="200.0" y1="150" x2="200.0" y2="190" class="connector-blue" marker-end="url(#arrow-blue)"/>
+  <g>
+    <rect x="40" y="190" width="320" height="70" rx="12" class="node-blue"/>
+    <text class="label-primary" x="200.0" y="221" text-anchor="middle">Build</text>
+  <text class="label-secondary" x="200.0" y="248" text-anchor="middle">Compile &amp; package</text>
+  </g>
+  <line x1="200.0" y1="260" x2="200.0" y2="300" class="connector-blue" marker-end="url(#arrow-blue)"/>
+  <g>
+    <rect x="40" y="300" width="320" height="70" rx="12" class="node-blue"/>
+    <text class="label-primary" x="200.0" y="331" text-anchor="middle">Test</text>
+  <text class="label-secondary" x="200.0" y="358" text-anchor="middle">Functional tests only</text>
+  </g>
+  <line x1="200.0" y1="370" x2="200.0" y2="410" class="connector-blue" marker-end="url(#arrow-blue)"/>
+  <g>
+    <rect x="40" y="410" width="320" height="70" rx="12" class="node-yellow"/>
+    <text class="label-primary" x="200.0" y="441" text-anchor="middle">Security Scan</text>
+  <text class="label-secondary" x="200.0" y="468" text-anchor="middle">Single gate, late-stage</text>
+  </g>
+  <line x1="200.0" y1="480" x2="200.0" y2="520" class="connector-red" marker-end="url(#arrow-red)"/>
+  <g>
+    <rect x="40" y="520" width="320" height="70" rx="12" class="node-red"/>
+    <text class="label-primary" x="200.0" y="551" text-anchor="middle">Deploy</text>
+  <text class="label-secondary" x="200.0" y="578" text-anchor="middle">Vulnerabilities ship if scan is skipped/bypassed</text>
+  </g>
+  <text class="group-label" x="440" y="65">Security-First: Security Embedded</text>
+  <g>
+    <rect x="440" y="80" width="320" height="70" rx="12" class="node-green"/>
+    <text class="label-primary" x="600.0" y="111" text-anchor="middle">Secure Code</text>
+  <text class="label-secondary" x="600.0" y="138" text-anchor="middle">Threat modeling + SAST at commit</text>
+  </g>
+  <line x1="600.0" y1="150" x2="600.0" y2="190" class="connector-green" marker-end="url(#arrow-green)"/>
+  <g>
+    <rect x="440" y="190" width="320" height="70" rx="12" class="node-green"/>
+    <text class="label-primary" x="600.0" y="221" text-anchor="middle">Secure Build</text>
+  <text class="label-secondary" x="600.0" y="248" text-anchor="middle">Signed artifacts, SBOM generated</text>
+  </g>
+  <line x1="600.0" y1="260" x2="600.0" y2="300" class="connector-green" marker-end="url(#arrow-green)"/>
+  <g>
+    <rect x="440" y="300" width="320" height="70" rx="12" class="node-green"/>
+    <text class="label-primary" x="600.0" y="331" text-anchor="middle">Secure Test</text>
+  <text class="label-secondary" x="600.0" y="358" text-anchor="middle">Security + functional tests together</text>
+  </g>
+  <line x1="600.0" y1="370" x2="600.0" y2="410" class="connector-green" marker-end="url(#arrow-green)"/>
+  <g>
+    <rect x="440" y="410" width="320" height="70" rx="12" class="node-green"/>
+    <text class="label-primary" x="600.0" y="441" text-anchor="middle">Secure Deploy</text>
+  <text class="label-secondary" x="600.0" y="468" text-anchor="middle">Policy-as-code gate, least privilege</text>
+  </g>
+  <line x1="600.0" y1="480" x2="600.0" y2="520" class="connector-green" marker-end="url(#arrow-green)"/>
+  <g>
+    <rect x="440" y="520" width="320" height="70" rx="12" class="node-green"/>
+    <text class="label-primary" x="600.0" y="551" text-anchor="middle">Continuous Monitoring</text>
+  <text class="label-secondary" x="600.0" y="578" text-anchor="middle">Runtime detection feeds back to Code</text>
+  </g>
+  <path d="M 760 555 L 800 555 L 800 115 L 760 115" stroke="#34A853" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#arrow-green)" fill="none"/>
+  <text class="label-secondary" x="820" y="400" text-anchor="end" style="color: #34A853;">findings feed back</text>
+  <text class="label-secondary" x="400" y="70" text-anchor="middle" style="font-style: italic;">Same starting point — diverging security posture</text>
+  <g style="opacity: 0.7;">
+    <text class="label-secondary" x="40" y="650" style="font-weight: 500;">Color System:</text>
+    <rect x="40" y="660" width="12" height="12" rx="2" fill="#4285F4"/>
+    <text class="label-secondary" x="58" y="670">Traditional stage (pre-security)</text>
+    <rect x="400" y="660" width="12" height="12" rx="2" fill="#FBBC04"/>
+    <text class="label-secondary" x="418" y="670">Bolted-on scan gate</text>
+  </g>
+  <g style="opacity: 0.7;">
+    <text class="label-secondary" x="40" y="680" style="font-weight: 500;">Color System:</text>
+    <rect x="40" y="690" width="12" height="12" rx="2" fill="#EA4335"/>
+    <text class="label-secondary" x="58" y="700">Risk exposed if gate skipped</text>
+    <rect x="400" y="690" width="12" height="12" rx="2" fill="#34A853"/>
+    <text class="label-secondary" x="418" y="700">Security-first stage</text>
+  </g>
+</svg>

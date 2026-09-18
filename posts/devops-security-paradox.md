@@ -67,6 +67,8 @@ Code → Build → Test → Security Scan → Deploy
 *Security-First Approach:*  
 Secure Code → Secure Build → Secure Test → Secure Deploy → Continuous Monitoring
 
+![Traditional pipeline with security bolted on as a late-stage scan gate, versus a security-first pipeline with security embedded at every stage and continuous monitoring feeding back into development](/images/devops-security-paradox-gcp.svg)
+
 **Principle 2: Consolidation Over Proliferation**
 
 Choose platforms that provide multiple capabilities rather than best-of-breed point solutions:
